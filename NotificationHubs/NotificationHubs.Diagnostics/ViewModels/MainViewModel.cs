@@ -86,6 +86,7 @@ namespace NotificationHubs.Diagnostics.ViewModels
 
         public ICommand GetRegistrationsCommand { get; set; }
         public ICommand SendNotificationCommand { get; set; }
+        public ICommand DeleteRegistrationsCommand { get; set; }
 
         public MainViewModel(string connectionString, string hubName)
         {
@@ -95,6 +96,12 @@ namespace NotificationHubs.Diagnostics.ViewModels
             RegistrationTags = new ObservableCollection<string>();
             GetRegistrationsCommand = new SimpleDelegateCommand(GetRegistrationsAsync);
             SendNotificationCommand = new SimpleDelegateCommand(SendNotificationAsync);
+            DeleteRegistrationsCommand = new SimpleDelegateCommand(DeleteRegistrationsAsync);
+        }
+
+        public async Task DeleteRegistrationsAsync()
+        {
+            await _notificationsFacade.DeleteAllRegistrationsAsync();
         }
 
         public async Task SendNotificationAsync()

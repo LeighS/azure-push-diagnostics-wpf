@@ -90,8 +90,8 @@
         <StackPanel  Grid.Row="2" Grid.Column="0" Orientation="Vertical">
             <TextBlock Style="{StaticResource HeaderStyle}">Registrations</TextBlock>
             <Button Command="{Binding GetRegistrationsCommand}">Get Registrations</Button>
-            <Button>Delete Registrations</Button>
-            <Button>Send Notification</Button>
+            <Button Command="{Binding DeleteRegistrationsCommand}">Delete Registrations</Button>
+            <Button Command="{Binding SendNotificationCommand}">Send Notification</Button>
         </StackPanel>
         <StackPanel Grid.Column="3" Grid.Row="1" Grid.RowSpan="3">
             <TextBlock FontWeight="Bold">Notes</TextBlock>

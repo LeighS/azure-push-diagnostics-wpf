@@ -33,6 +33,16 @@ namespace NotificationHubs.Diagnostics.Services
             await client.DeleteRegistrationAsync(registrationId);
         }
 
+        public async Task DeleteAllRegistrationsAsync()
+        {
+            NotificationHubClient client = NotificationHubClient.CreateClientFromConnectionString(_connectionstring, _hubName);
+            var items = await client.GetAllRegistrationsAsync(400);
+            foreach (var item in items)
+            {
+                await client.DeleteRegistrationAsync(item.RegistrationId);
+            }
+        }
+
         public async Task<NotificationDetails> GetNotificationOutcomeAsync(string notificationId)
         {
             NotificationHubClient client = NotificationHubClient.CreateClientFromConnectionString(_connectionstring, _hubName);
