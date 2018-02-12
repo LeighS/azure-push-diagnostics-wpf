@@ -15,7 +15,7 @@ namespace NotificationHubs.Diagnostics.ViewModels
 
         public string RegistrationId => _model.RegistrationId;
         public DateTime? ExpirationTime => _model.ExpirationTime;
-        public int TagCount => _model.Tags.Count;
+        public int TagCount => _model.Tags == null ? 0 : _model.Tags.Count;
         
         public string RegistrationType => _model.GetType().Name;
 
@@ -24,7 +24,8 @@ namespace NotificationHubs.Diagnostics.ViewModels
         public List<string> GetTags()
         {
             var tags = new List<string>();
-            tags.AddRange(_model.Tags);
+            if (_model.Tags != null)
+                tags.AddRange(_model.Tags);
             return tags;
         }
 
